@@ -36,8 +36,8 @@ from typing import Iterable, Sequence
 import numpy as np
 
 from .geo import (EARTH_RADIUS_KM, MAX_RT_KM_PER_MS, cap_points,
-                  great_circle_km, latlon_to_unit, spherical_cap_area_km2,
-                  unit_to_latlon)
+                  fibonacci_sphere, great_circle_km, latlon_to_unit,
+                  spherical_cap_area_km2, unit_to_latlon)
 from .measure import AnchorMeasurement
 from .model import (DelayParams, fit_outlier_component, fit_params,
                     loss_probability)
@@ -396,19 +396,32 @@ def estimate_location(
     if len(obs) < 4:
         raise ValueError(f"need at least 4 responding anchors, got {len(obs)}")
     con = build_constraints(obs)
-    obs_sorted = sorted(obs, key=lambda o: o.rtt_ms)
+    rtt_order = np.argsort(con.rtt_ms)
+
+    params = params_prior or load_calibrated_params() or DelayParams()
+    params = fit_outlier_component(con.rtt_ms, params)
+
+    # ---- 0. coarse global screen for mislocated anchors -------------------
+    # This runs before the search window is chosen, because a mislocated anchor
+    # with an implausibly short RTT otherwise clips the window to a region that
+    # excludes the true location, and nothing later can recover a point that was
+    # never a candidate. A coarse grid over the whole globe is enough to see
+    # which anchors the bulk of the evidence contradicts, and it costs one pass
+    # over a few thousand points rather than a second full search.
+    screen = fibonacci_sphere(4000)
+    rel_all = np.ones(len(con), dtype=bool)
+    ev_screen = evaluate(con, screen, params, relevant=rel_all, use_loss=use_loss)
+    use = _reject_inconsistent_anchors(
+        con, screen, ev_screen, rel_all, params, max_test=2, rounds=2,
+        criterion="likelihood", progress=progress)
 
     # ---- 1. certificate-driven search window -----------------------------
-    # The window is taken from the third-smallest RTT rather than the smallest.
-    # One mislocated anchor answering implausibly fast would otherwise clip the
-    # search to a region that excludes the true location, and nothing later in
-    # the pipeline can recover a point that was never a candidate: field testing
-    # produced a 0.31 ms reply from a server 1,179 km away, which shrank the
-    # window to 365 km and made the correct answer unreachable. Allowing up to
-    # two such anchors costs resolution, not correctness, because the real
-    # constraints are still applied to every candidate afterwards.
-    window_index = min(2, len(obs_sorted) - 1)
-    nearest = obs_sorted[window_index]
+    # The window comes from the tightest anchor that survived the screen, so it
+    # stays as small as the evidence justifies: widening it for every host would
+    # trade away accuracy on the overwhelming majority of anchor sets, which are
+    # not contaminated at all.
+    survivors = [int(i) for i in rtt_order if use[i]] or [int(i) for i in rtt_order]
+    nearest = obs[survivors[0]]
     cap_radius = nearest.radius_km
     centre = nearest.unit
 
@@ -420,28 +433,15 @@ def estimate_location(
     progress(f"  nearest anchor {nearest.key} floor {nearest.rtt_ms:.2f} ms -> "
              f"certificate cap {cap_radius:,.0f} km (searching {search_radius:,.0f} km)")
 
-    relevant = relevant_anchors(con, centre, search_radius)
+    relevant = relevant_anchors(con, centre, search_radius) & use
 
     # ---- 2. exploration pass --------------------------------------------
     pts = cap_points(centre, search_radius, exploration)
-    params = params_prior or load_calibrated_params() or DelayParams()
-    params = fit_outlier_component(con.rtt_ms, params)
     ev = evaluate(con, pts, params, relevant=relevant, use_loss=use_loss)
     consensus = _consensus_point(pts, ev)
     v_star = float(ev.violation_count[_consensus_index(ev)])
     progress(f"  exploration: {len(pts):,} points, best consensus violates "
              f"{int(v_star)} of {len(con)} constraints")
-
-    # ---- 2b. drop anchors the rest of the evidence contradicts ------------
-    use = _reject_inconsistent_anchors(con, pts, ev, relevant, params,
-                                       progress=progress)
-    if not use.all():
-        relevant = relevant & use
-        ev = evaluate(con, pts, params, relevant=relevant, use_loss=use_loss)
-        consensus = _consensus_point(pts, ev)
-        v_star = float(ev.violation_count[_consensus_index(ev)])
-        progress(f"  after rejection: consensus violates {int(v_star)} of "
-                 f"{int(relevant.sum())} remaining constraints")
 
     # ---- 3. alternate: fit the model, then re-find the consensus ---------
     # The delay model is fitted *at the consensus point*, which is established
@@ -578,7 +578,8 @@ def _consensus_index(ev: Evaluation, mask: np.ndarray | None = None) -> int:
 def _reject_inconsistent_anchors(con: Constraints, pts: np.ndarray,
                                  ev: Evaluation, relevant: np.ndarray,
                                  params: DelayParams, *, max_test: int = 5,
-                                 rounds: int = 3,
+                                 rounds: int = 3, criterion: str = "consensus",
+                                 margin: float = 2.0, margin_km: float = 300.0,
                                  progress=lambda s: None) -> np.ndarray:
     """Drop anchors that the consensus of all the *other* anchors contradicts.
 
@@ -614,10 +615,27 @@ def _reject_inconsistent_anchors(con: Constraints, pts: np.ndarray,
             if not mask.any():
                 continue
             ev_alt = evaluate(con, pts, params, relevant=mask)
-            alt = _consensus_index(ev_alt)
+            # Which location do the remaining anchors favour? Under "consensus"
+            # that is the one contradicting fewest constraints, but that measure
+            # cannot separate a liar from the truth: a tight bogus cone is
+            # satisfiable, so the consensus simply moves into it. Under
+            # "likelihood" the answer comes from the delay model's annuli, which
+            # a single bad anchor cannot drag, so it is the better screen.
+            if criterion == "likelihood":
+                best = ev_alt.violation_count.min()
+                ok = ev_alt.violation_count <= best
+                alt = int(np.argmax(np.where(ok, ev_alt.loglik, -np.inf)))
+            else:
+                alt = _consensus_index(ev_alt)
             d_alt = float(great_circle_km(pts[alt][None, :],
                                           con.units[k][None, :])[0])
-            if d_alt > con.radius_km[k]:
+            # Only a decisive contradiction counts. The alternative consensus is
+            # located on a coarse grid, so a legitimate anchor can appear
+            # marginally inconsistent through discretisation alone; rejecting on
+            # any excess at all dropped good anchors on clean data and cost an
+            # order of magnitude in median accuracy across the validation set.
+            limit = max(con.radius_km[k] * margin, con.radius_km[k] + margin_km)
+            if d_alt > limit:
                 use[k] = False
                 dropped_this_round.append(con.keys[k])
         if not dropped_this_round:
