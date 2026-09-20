@@ -151,17 +151,19 @@ def run_web_photos() -> list[str]:
                         time.time() > deadline - 60:
                     break
                 page.wait_for_timeout(1000)
-            page.screenshot(path=str(OUT / "web_scanning.png"))
-            shots.append("web_scanning.png")
-            log(f"  captured web_scanning.png at {page.inner_text('#anch')}")
+            page.screenshot(path=str(OUT / "web_scanning.jpg"), type="jpeg",
+                            quality=72)
+            shots.append("web_scanning.jpg")
+            log(f"  captured web_scanning.jpg at {page.inner_text('#anch')}")
 
             deadline = time.time() + 400
             while time.time() < deadline:
                 if page.inner_text("#status") == "complete":
                     break
                 page.wait_for_timeout(1500)
-            page.screenshot(path=str(OUT / "web_final.png"))
-            shots.append("web_final.png")
+            page.screenshot(path=str(OUT / "web_final.jpg"), type="jpeg",
+                            quality=72)
+            shots.append("web_final.jpg")
             state = {
                 "status": page.inner_text("#status"),
                 "coord": page.inner_text("#coord"),

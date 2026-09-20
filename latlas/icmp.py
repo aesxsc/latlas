@@ -432,30 +432,57 @@ class _TcpConnect:
 # --------------------------------------------------------------------------
 
 
+#: Hosts used to confirm a backend can actually reach the internet. A datagram
+#: ICMP socket can open and answer on loopback while the network silently drops
+#: ICMP to everywhere else -- Azure and many corporate networks do exactly that --
+#: so opening a socket is not evidence that probing works.
+_REACHABILITY_PROBES = ("1.1.1.1", "8.8.8.8", "9.9.9.9")
+_REACHABILITY_TIMEOUT_MS = 900
+
+
+def _can_reach_internet(be, timeout_ms: int = _REACHABILITY_TIMEOUT_MS) -> bool:
+    handle = None
+    try:
+        handle = be.open()
+        for ip in _REACHABILITY_PROBES:
+            addr = struct.unpack("<I", socket.inet_aton(ip))[0]
+            rtt, _ = be.ping(handle, addr, timeout_ms, 1)
+            if rtt is not None:
+                return True
+        return False
+    except Exception:  # noqa: BLE001
+        return False
+    finally:
+        if handle is not None:
+            try:
+                be.close(handle)
+            except Exception:  # noqa: BLE001
+                pass
+
+
 def _make(name: str):
     if name == "windows":
         be = _WindowsIcmp()
         h = be.open()
         be.close(h)
-        return be
+        return be if _can_reach_internet(be) else None
     if name == "posix":
         be = _PosixIcmp()
         h = be.open()
-        rtt, status = be.ping(h, struct.unpack("<I", socket.inet_aton("127.0.0.1"))[0],
-                              500, 1)
+        rtt, _ = be.ping(h, struct.unpack("<I", socket.inet_aton("127.0.0.1"))[0],
+                         500, 1)
         be.close(h)
-        # A loopback echo must come back; anything else means the socket is not
-        # actually usable (typically ping_group_range excludes this group).
-        return be if rtt is not None else None
+        if rtt is None:
+            return None
+        return be if _can_reach_internet(be) else None
     if name == "ping-binary":
         if not shutil.which("ping"):
             return None
         be = _PingBinary()
-        got = be.series(None, struct.unpack("<I", socket.inet_aton("127.0.0.1"))[0],
-                        "127.0.0.1", 1, 0.0, 1500)
-        return be if got and got[0] is not None else None
+        return be if _can_reach_internet(be) else None
     if name == "tcp":
-        return _TcpConnect()
+        be = _TcpConnect()
+        return be if _can_reach_internet(be) else None
     return None
 
 
@@ -481,7 +508,10 @@ def select_backend(force: str | None = None):
         if be is not None:
             return be
         tried.append(f"{name}(unavailable)")
-    raise RuntimeError("no working probe backend available; tried " + ", ".join(tried))
+    raise RuntimeError(
+        "no probe backend could reach the internet; tried " + ", ".join(tried)
+        + ". Outbound ICMP and TCP are both blocked on this network, so "
+          "latency cannot be measured from here.")
 
 
 class Prober:
