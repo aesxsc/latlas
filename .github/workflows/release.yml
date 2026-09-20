@@ -1,0 +1,43 @@
+name: release
+
+# Publishing uses PyPI Trusted Publishing (OIDC): no API token is stored in the
+# repository. Configure the publisher once at
+# https://pypi.org/manage/account/publishing/ with:
+#   owner: aesxsc   repository: latlas   workflow: release.yml   environment: pypi
+# After that, pushing a tag like v1.0.1 publishes automatically.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install build && python -m build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write          # required for trusted publishing
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          # Lets the workflow run to completion once, without failing, if the
+          # trusted publisher has not been configured on PyPI yet.
+          skip-existing: true

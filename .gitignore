@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+
+# Measurement and validation artifacts: regenerated on demand, large, and
+# machine-specific. The bundled copies inside latlas/data/ are what ship.
+data/anchors.json
+data/campaign.json
+data/estimate.json
+data/validation.json
+data/mesh_cases.json
+data/delay_params.json
+data/atlas_probes.json
+data/speedtest_raw*.json

@@ -1,0 +1,86 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / py${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.10", "3.12", "3.13"]
+        exclude:
+          # Keep the matrix small: one modern interpreter per platform is enough
+          # to catch platform breakage, and 3.10 covers the declared floor.
+          - { os: macos-latest, python: "3.13" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install
+        run: python -m pip install --upgrade pip && pip install -e ".[test]"
+      - name: Unit tests
+        run: pytest -q tests
+      - name: Probe backend must be available on every supported platform
+        # The ICMP layer is the only genuinely platform-specific code, so it gets
+        # its own check rather than being implicitly covered by unit tests.
+        shell: bash
+        run: |
+          python - <<'PY'
+          from latlas.icmp import select_backend, Prober
+          be = select_backend()
+          print("backend:", be.name, "kernel_timed:", be.kernel_timed,
+                "degraded:", be.degraded)
+          assert not be.degraded, (
+              f"only the degraded TCP fallback is available on this runner ({be.name})")
+          p = Prober(backend=be)
+          s = p.series("127.0.0.1", n=3, interval=0.02, timeout_ms=1500)
+          p.close()
+          assert s.received >= 1, f"loopback probe failed: {s.samples_ms}"
+          print("loopback floor:", s.floor_ms(), "ms")
+          PY
+      - name: Bundled data must be present
+        shell: bash
+        run: |
+          python - <<'PY'
+          from latlas.geo_data import baked_anchors, anchors_hash, nearest_places
+          a = baked_anchors()
+          assert len(a) > 1000, f"expected a large bundled anchor set, got {len(a)}"
+          assert anchors_hash(), "anchor hash missing"
+          p = nearest_places(48.85, 2.35, k=1)
+          assert p and p[0].name, "gazetteer lookup failed"
+          print(len(a), "anchors, nearest to Paris:", p[0].describe())
+          PY
+
+  build:
+    name: build sdist + wheel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install build twine && python -m build
+      - name: Verify the wheel actually carries the bundled data
+        run: |
+          python - <<'PY'
+          import glob, zipfile
+          whl = glob.glob("dist/*.whl")[0]
+          names = zipfile.ZipFile(whl).namelist()
+          for want in ("latlas/data/anchors.json", "latlas/data/cities.json",
+                       "latlas/data/delay_params.json"):
+              assert want in names, f"{want} missing from {whl}"
+          print(whl, "contains all bundled data")
+          PY
+      - run: twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/

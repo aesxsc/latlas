@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "latlas"
+version = "1.0.0"
+description = "Estimate where this machine is using only ICMP round-trip times to known anchors"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "AGPL-3.0-or-later"
+authors = [{ name = "aesxsc" }]
+keywords = ["geolocation", "latency", "icmp", "network-measurement", "rtt"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Science/Research",
+  "Operating System :: POSIX :: Linux",
+  "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python :: 3",
+  "Topic :: Internet",
+  "Topic :: Scientific/Engineering :: GIS",
+]
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://github.com/aesxsc/latlas"
+Source = "https://github.com/aesxsc/latlas"
+
+[project.scripts]
+latlas = "latlas.cli:main"
+
+[tool.setuptools]
+packages = ["latlas"]
+
+# The anchor set, the city gazetteer and the calibrated delay law ship inside the
+# wheel: a fresh install must answer the question with no download or setup step.
+[tool.setuptools.package-data]
+latlas = ["data/*.json"]

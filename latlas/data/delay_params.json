@@ -1,0 +1,12 @@
+{
+ "k_km_per_ms": 102.15,
+ "beta_ms": 1.5507,
+ "mu_log_detour": 0.69,
+ "sigma_log_detour": 0.2207,
+ "implied_median_detour": 1.9937,
+ "pi_outlier": 0.04,
+ "mu_out_log_rtt": 3.6,
+ "sigma_out_log_rtt": 1.0,
+ "fiber_cone_km_per_ms": 102.15,
+ "vacuum_cone_km_per_ms": 149.896
+}
