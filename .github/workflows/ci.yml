@@ -28,9 +28,13 @@ jobs:
         run: python -m pip install --upgrade pip && pip install -e ".[test]"
       - name: Unit tests
         run: pytest -q tests
-      - name: Probe backend must be available on every supported platform
+      - name: Probing must actually reach the internet on every platform
         # The ICMP layer is the only genuinely platform-specific code, so it gets
-        # its own check rather than being implicitly covered by unit tests.
+        # its own check. What matters is that some backend measures a real host:
+        # GitHub's runners drop outbound ICMP, so landing on the TCP fallback is
+        # a correct outcome there, not a failure. Asserting otherwise would pass
+        # on loopback while the network was silently discarding every probe,
+        # which is exactly the bug that took a field test to find.
         shell: bash
         run: |
           python - <<'PY'
@@ -38,13 +42,12 @@ jobs:
           be = select_backend()
           print("backend:", be.name, "kernel_timed:", be.kernel_timed,
                 "degraded:", be.degraded)
-          assert not be.degraded, (
-              f"only the degraded TCP fallback is available on this runner ({be.name})")
           p = Prober(backend=be)
-          s = p.series("127.0.0.1", n=3, interval=0.02, timeout_ms=1500)
+          s = p.series("1.1.1.1", n=3, interval=0.02, timeout_ms=2000)
           p.close()
-          assert s.received >= 1, f"loopback probe failed: {s.samples_ms}"
-          print("loopback floor:", s.floor_ms(), "ms")
+          print("1.1.1.1 ->", s.samples_ms)
+          assert s.received >= 1, (
+              f"backend {be.name} could not reach a public host: {s.samples_ms}")
           PY
       - name: Bundled data must be present
         shell: bash
