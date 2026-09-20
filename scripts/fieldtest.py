@@ -99,13 +99,16 @@ def run_cli() -> dict:
     raw = capture([sys.executable, "-m", "latlas", "--quick", "--json",
                    "--samples", str(SAMPLES)], timeout=900)
     write("cli_raw.txt", raw)
-    # The CLI prints prose before the JSON when not --json; with --json it is pure.
+    # Take the first complete JSON value in the stream: a traceback on stderr can
+    # precede it, and trailing text must not break parsing.
     try:
         start = raw.index("{")
-        data = json.loads(raw[start:])
+        data, _end = json.JSONDecoder().raw_decode(raw[start:])
     except Exception as e:  # noqa: BLE001
         log(f"could not parse CLI json: {e}")
         return {"error": f"unparsable output: {e}"}
+    if not data.get("measurement", {}).get("anchors_used"):
+        log("WARNING: no anchor replied; check for a network that blocks ICMP")
     log(f"estimate {data['position']['lat']:.4f},{data['position']['lon']:.4f}"
         f"  place={data.get('place')!r}"
         f"  bound=+/-{data['uncertainty']['certificate_radius_km']:.0f} km"
