@@ -1,0 +1,48 @@
+name: fieldtest
+
+# Runs the tool end to end on real hosts in different places and keeps the
+# evidence: console logs, the machine-readable result, and screenshots of the
+# live map. Artifacts are what the field reports are assembled from.
+
+on:
+  workflow_dispatch:
+    inputs:
+      samples:
+        description: "echoes per anchor"
+        default: "8"
+        required: false
+
+jobs:
+  host:
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest,  label: linux-us }
+          - { os: windows-latest, label: windows-us }
+          - { os: macos-latest,   label: macos-us }
+    env:
+      LATLAS_FIELD_SAMPLES: ${{ github.event.inputs.samples || '8' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install package and browser
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Field test
+        run: python scripts/fieldtest.py fieldtest-out/${{ matrix.label }} "${{ matrix.label }}"
+        continue-on-error: true
+      - name: Upload evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fieldtest-${{ matrix.label }}
+          path: fieldtest-out/
+          if-no-files-found: warn

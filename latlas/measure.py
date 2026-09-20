@@ -174,11 +174,14 @@ def run_campaign(anchors: Sequence[Anchor], *,
                  anchors_hash: str = "",
                  progress: Callable[[str], None] = print,
                  progress_every: int = 150,
-                 on_batch: Callable[[int, int], None] | None = None) -> Campaign:
+                 on_batch: Callable[[int, int], None] | None = None,
+                 on_anchor: Callable[[AnchorMeasurement], None] | None = None) -> Campaign:
     """Probe every anchor ``samples`` times and return the campaign record.
 
     ``on_batch(done, total)`` fires at each progress milestone so a live front end
     can show a scan in motion without polling the campaign object.
+    ``on_anchor`` fires once per completed anchor, which is what lets a live view
+    plot each result as it lands rather than in batches.
     """
     t_start = time.time()
     total = len(anchors)
@@ -208,6 +211,8 @@ def run_campaign(anchors: Sequence[Anchor], *,
         )
         with lock:
             done += 1
+            if on_anchor is not None:
+                on_anchor(m)
             if done % progress_every == 0 or done == total:
                 progress(f"    {done}/{total} anchors probed "
                          f"({time.time() - t_start:.0f}s)")
