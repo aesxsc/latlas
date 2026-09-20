@@ -21,3 +21,6 @@ data/speedtest_raw*.json
 
 # Field-test output (logs, screenshots) is regenerated per host.
 fieldtest-out/
+
+# CI artifact downloads (evidence lives in fieldtest/ instead)
+_ci/

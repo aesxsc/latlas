@@ -399,8 +399,16 @@ def estimate_location(
     obs_sorted = sorted(obs, key=lambda o: o.rtt_ms)
 
     # ---- 1. certificate-driven search window -----------------------------
-    # The nearest anchor alone confines the client to one spherical cap.
-    nearest = obs_sorted[0]
+    # The window is taken from the third-smallest RTT rather than the smallest.
+    # One mislocated anchor answering implausibly fast would otherwise clip the
+    # search to a region that excludes the true location, and nothing later in
+    # the pipeline can recover a point that was never a candidate: field testing
+    # produced a 0.31 ms reply from a server 1,179 km away, which shrank the
+    # window to 365 km and made the correct answer unreachable. Allowing up to
+    # two such anchors costs resolution, not correctness, because the real
+    # constraints are still applied to every candidate afterwards.
+    window_index = min(2, len(obs_sorted) - 1)
+    nearest = obs_sorted[window_index]
     cap_radius = nearest.radius_km
     centre = nearest.unit
 
@@ -423,6 +431,17 @@ def estimate_location(
     v_star = float(ev.violation_count[_consensus_index(ev)])
     progress(f"  exploration: {len(pts):,} points, best consensus violates "
              f"{int(v_star)} of {len(con)} constraints")
+
+    # ---- 2b. drop anchors the rest of the evidence contradicts ------------
+    use = _reject_inconsistent_anchors(con, pts, ev, relevant, params,
+                                       progress=progress)
+    if not use.all():
+        relevant = relevant & use
+        ev = evaluate(con, pts, params, relevant=relevant, use_loss=use_loss)
+        consensus = _consensus_point(pts, ev)
+        v_star = float(ev.violation_count[_consensus_index(ev)])
+        progress(f"  after rejection: consensus violates {int(v_star)} of "
+                 f"{int(relevant.sum())} remaining constraints")
 
     # ---- 3. alternate: fit the model, then re-find the consensus ---------
     # The delay model is fitted *at the consensus point*, which is established
@@ -554,6 +573,59 @@ def _consensus_index(ev: Evaluation, mask: np.ndarray | None = None) -> int:
     order = np.lexsort((-ev.loglik[idx], ev.violation_excess_km[idx],
                         ev.violation_count[idx]))
     return int(idx[order[0]])
+
+
+def _reject_inconsistent_anchors(con: Constraints, pts: np.ndarray,
+                                 ev: Evaluation, relevant: np.ndarray,
+                                 params: DelayParams, *, max_test: int = 5,
+                                 rounds: int = 3,
+                                 progress=lambda s: None) -> np.ndarray:
+    """Drop anchors that the consensus of all the *other* anchors contradicts.
+
+    Maximum consensus satisfies every constraint it can, so one mislocated anchor
+    with an implausibly short RTT can capture the whole answer: a single tight
+    cone wins against a thousand loose ones, and the region simply moves to sit
+    inside it. Field testing produced exactly that -- a server claiming to be in
+    New Brunswick answered a Washington runner in 0.31 ms, a round trip that
+    cannot cover 1,179 km, and the estimate moved 1,000 km to obey it.
+
+    The test here is the standard robust one: remove an anchor, let the remaining
+    anchors form their own consensus, and see whether the removed anchor is
+    consistent with it. An anchor the rest of the evidence contradicts is noise,
+    not evidence, and is dropped. This is not a licence to discard inconvenient
+    data -- an anchor that the others agree with survives, however tight it is.
+    """
+    use = np.ones(len(con), dtype=bool)
+    if len(con) < 16:
+        return use
+    order = np.argsort(con.rtt_ms)
+
+    for _round in range(rounds):
+        dropped_this_round = []
+        for k in order[:min(max_test, len(order))]:
+            k = int(k)
+            if not use[k]:
+                continue
+            trial = use.copy()
+            trial[k] = False
+            if int(trial.sum()) < 8:
+                continue
+            mask = relevant & trial
+            if not mask.any():
+                continue
+            ev_alt = evaluate(con, pts, params, relevant=mask)
+            alt = _consensus_index(ev_alt)
+            d_alt = float(great_circle_km(pts[alt][None, :],
+                                          con.units[k][None, :])[0])
+            if d_alt > con.radius_km[k]:
+                use[k] = False
+                dropped_this_round.append(con.keys[k])
+        if not dropped_this_round:
+            break
+        progress(f"  dropped {len(dropped_this_round)} anchor(s) inconsistent "
+                 f"with the rest: {', '.join(dropped_this_round[:4])}")
+    return use
+
 
 
 def _consensus_point(pts: np.ndarray, ev: Evaluation,
