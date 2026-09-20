@@ -19,8 +19,10 @@ data/delay_params.json
 data/atlas_probes.json
 data/speedtest_raw*.json
 
-# Field-test output (logs, screenshots) is regenerated per host.
-fieldtest-out/
 
 # CI artifact downloads (evidence lives in fieldtest/ instead)
 _ci/
+
+# Raw per-host field-test output; the assembled report under fieldtest/ is
+# what gets committed.
+fieldtest-out/

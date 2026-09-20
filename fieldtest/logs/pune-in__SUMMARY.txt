@@ -1,0 +1,9 @@
+host        codespaces-d6820c  (Linux-6.8.0-1064-azure-x86_64-with-glibc2.39)
+python      3.14.2   backend tcp-connect  DEGRADED
+anchors     1581/1600 replied  (98.8%)
+closest RTT 3.32 ms   scan 167.1 s
+estimate    {'lat': 18.9641, 'lon': 72.82189}   at Dhārāvi, India
+bound       +/-851.9 km
+truth       18.51958,73.85605
+error       119.6 km   inside_bound=True
+photolog    web_scanning.jpg, web_final.jpg

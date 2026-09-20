@@ -1,0 +1,217 @@
+{
+ "position": {
+  "lat": 45.31601,
+  "lon": -68.82694
+ },
+ "place": "58 km south of Bangor, United States",
+ "nearest": [
+  {
+   "name": "Bangor",
+   "country": "United States",
+   "lat": 44.7988,
+   "lon": -68.7726,
+   "population": 32391,
+   "distance_km": 57.7,
+   "bearing_deg": 175.7,
+   "compass": "south"
+  },
+  {
+   "name": "Waterville",
+   "country": "United States",
+   "lat": 44.552,
+   "lon": -69.6317,
+   "population": 16261,
+   "distance_km": 106.0,
+   "bearing_deg": 217.0,
+   "compass": "south-west"
+  },
+  {
+   "name": "Augusta",
+   "country": "United States",
+   "lat": 44.3106,
+   "lon": -69.7795,
+   "population": 18899,
+   "distance_km": 134.7,
+   "bearing_deg": 214.2,
+   "compass": "south-west"
+  },
+  {
+   "name": "Saint-Georges",
+   "country": "Canada",
+   "lat": 46.1135,
+   "lon": -70.6653,
+   "population": 31173,
+   "distance_km": 168.0,
+   "bearing_deg": 302.5,
+   "compass": "north-west"
+  },
+  {
+   "name": "Lewiston",
+   "country": "United States",
+   "lat": 44.1003,
+   "lon": -70.2148,
+   "population": 36202,
+   "distance_km": 174.1,
+   "bearing_deg": 219.5,
+   "compass": "south-west"
+  }
+ ],
+ "uncertainty": {
+  "certificate_radius_km": 801.0,
+  "credible_radius_km": 55.5,
+  "region_centre": {
+   "lat": 43.7369,
+   "lon": -68.87494
+  },
+  "method": "intersection of speed-of-light spherical caps"
+ },
+ "model_refined": {
+  "lat": 47.24657,
+  "lon": -69.68968,
+  "place": "Rivi\u00e8re-du-Loup",
+  "separation_km": 224.7
+ },
+ "measurement": {
+  "anchors_total": 1600,
+  "anchors_used": 1577,
+  "response_rate": 0.9856,
+  "min_rtt_ms": 3.87,
+  "elapsed_s": 135.5,
+  "backend": "tcp-connect",
+  "samples_per_anchor": 8
+ },
+ "delay_model": {
+  "k_km_per_ms": 102.15,
+  "beta_ms": 0.0,
+  "mu_log_detour": 0.65,
+  "sigma_log_detour": 0.1338,
+  "implied_median_detour": 1.9155,
+  "pi_outlier": 0.04,
+  "mu_out_log_rtt": 5.5388,
+  "sigma_out_log_rtt": 0.6,
+  "fiber_cone_km_per_ms": 102.15,
+  "vacuum_cone_km_per_ms": 149.896
+ },
+ "diagnostics": {
+  "responding_anchors": 1577,
+  "attempted_anchors": 1600,
+  "response_rate": 0.9856,
+  "nearest_anchor": {
+   "key": "ripe-atlas:1577",
+   "rtt_ms": 3.87,
+   "certificate_radius_km": 730.0,
+   "source": "ripe-atlas",
+   "city": "Montreal",
+   "country": "CA"
+  },
+  "implied_median_detour": 1.9155,
+  "min_observed_rtt_ms": 3.87,
+  "median_observed_rtt_ms": 145.68,
+  "max_observed_rtt_ms": 306.61,
+  "constraints_violated_at_certificate": 0,
+  "violated_keys": [],
+  "model_inconsistent_anchors": 159,
+  "model_inconsistent_frac": 0.1008,
+  "suspected_mislocated_or_anycast": [
+   {
+    "key": "ripe-atlas:1975",
+    "source": "ripe-atlas",
+    "advertised_km": 16404.0,
+    "rtt_implied_km": 10639.0,
+    "rtt_ms": 199.51,
+    "responsibility": 0.0031
+   },
+   {
+    "key": "ripe-atlas:3769",
+    "source": "ripe-atlas",
+    "advertised_km": 16405.0,
+    "rtt_implied_km": 10648.0,
+    "rtt_ms": 199.68,
+    "responsibility": 0.0032
+   },
+   {
+    "key": "ripe-atlas:1526",
+    "source": "ripe-atlas",
+    "advertised_km": 16404.0,
+    "rtt_implied_km": 10657.0,
+    "rtt_ms": 199.84,
+    "responsibility": 0.0032
+   },
+   {
+    "key": "ripe-atlas:3744",
+    "source": "ripe-atlas",
+    "advertised_km": 16398.0,
+    "rtt_implied_km": 10656.0,
+    "rtt_ms": 199.82,
+    "responsibility": 0.0032
+   },
+   {
+    "key": "ripe-atlas:2084",
+    "source": "ripe-atlas",
+    "advertised_km": 16405.0,
+    "rtt_implied_km": 10672.0,
+    "rtt_ms": 200.13,
+    "responsibility": 0.0033
+   },
+   {
+    "key": "ripe-atlas:3743",
+    "source": "ripe-atlas",
+    "advertised_km": 17099.0,
+    "rtt_implied_km": 11372.0,
+    "rtt_ms": 213.25,
+    "responsibility": 0.005
+   },
+   {
+    "key": "ripe-atlas:4325",
+    "source": "ripe-atlas",
+    "advertised_km": 16405.0,
+    "rtt_implied_km": 10684.0,
+    "rtt_ms": 200.34,
+    "responsibility": 0.0034
+   },
+   {
+    "key": "ripe-atlas:4542",
+    "source": "ripe-atlas",
+    "advertised_km": 16404.0,
+    "rtt_implied_km": 10731.0,
+    "rtt_ms": 201.23,
+    "responsibility": 0.0038
+   },
+   {
+    "key": "speedtest:12491",
+    "source": "speedtest",
+    "advertised_km": 17107.0,
+    "rtt_implied_km": 11561.0,
+    "rtt_ms": 216.79,
+    "responsibility": 0.007
+   },
+   {
+    "key": "ripe-atlas:3733",
+    "source": "ripe-atlas",
+    "advertised_km": 16400.0,
+    "rtt_implied_km": 10869.0,
+    "rtt_ms": 203.82,
+    "responsibility": 0.005
+   },
+   {
+    "key": "speedtest:12495",
+    "source": "speedtest",
+    "advertised_km": 17430.0,
+    "rtt_implied_km": 11967.0,
+    "rtt_ms": 224.4,
+    "responsibility": 0.0094
+   },
+   {
+    "key": "ripe-atlas:1491",
+    "source": "ripe-atlas",
+    "advertised_km": 16404.0,
+    "rtt_implied_km": 10974.0,
+    "rtt_ms": 205.79,
+    "responsibility": 0.0061
+   }
+  ],
+  "n_suspected": 0,
+  "suspected_frac": 0.0
+ },
+ "calibration": null
+}

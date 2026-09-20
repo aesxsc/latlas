@@ -73,6 +73,9 @@ class SenseResult:
             ],
             "uncertainty": {
                 "certificate_radius_km": round(self.certificate_radius_km, 1),
+                "is_hard_bound": bool(
+                    self.estimate.certificate.get("is_hard_bound", True)),
+                "contradictions": self.estimate.certificate.get("contradictions", 0),
                 "credible_radius_km": (None if self.credible_radius_km is None
                                        else round(self.credible_radius_km, 1)),
                 # Centre of the enclosing cap that the radius describes; distinct

@@ -1,0 +1,11 @@
+=== latlas field test: codespace-eastus ===
+platform : Linux-6.8.0-1064-azure-x86_64-with-glibc2.39
+python   : 3.14.2 (CPython)
+cpus     : 2
+backend  : tcp-connect  [DEGRADED - tcp fallback]
+--- latlas --quick --json ---
+estimate 39.0161,-77.4588  place='at Sterling, United States'  bound=+/-443 km  anchors=1585/1600
+truth 38.9664,-77.4516 (spread 267 km)  error 5.6 km  inside_bound=True
+--- web UI photolog ---
+  captured web_scanning.jpg at 852 / 1600
+  captured web_final.png  status=complete coord=39.0166°N, 77.4589°W

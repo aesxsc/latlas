@@ -1,0 +1,7 @@
+status: complete
+coord: 39.0166°N, 77.4589°W
+place: at Sterling
+bound: ±450 km
+anchors: 1585 / 1600
+hist: 1492 replies
+spark: region extent, 38 updates

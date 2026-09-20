@@ -1,0 +1,304 @@
+{
+ "env": {
+  "label": "macos-us",
+  "hostname": "iad20-gt1017-7ed24533-2045-41f5-944b-59444e45498c-82963E880FC0.local",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "system": "Darwin",
+  "release": "25.6.0",
+  "machine": "arm64",
+  "python": "3.12.10",
+  "python_impl": "CPython",
+  "cpu_count": 3,
+  "started": "2026-09-20T21:06:42Z",
+  "uname": "Darwin iad20-gt1017-7ed24533-2045-41f5-944b-59444e45498c-82963E880FC0.local 25.6.0 Darwin Kernel Version 25.6.0: Fri Jul 31 19:16:43 PDT 2026; root:xnu-12377.161.14~5/RELEASE_ARM64_VMAPPLE arm64 arm",
+  "backend": "icmp-posix",
+  "backend_degraded": false
+ },
+ "result": {
+  "position": {
+   "lat": 48.7443,
+   "lon": -117.19635
+  },
+  "place": "116 km south of Post Falls, United States",
+  "nearest": [
+   {
+    "name": "Post Falls",
+    "country": "United States",
+    "lat": 47.718,
+    "lon": -116.9516,
+    "population": 30453,
+    "distance_km": 115.6,
+    "bearing_deg": 170.9,
+    "compass": "south"
+   },
+   {
+    "name": "Spokane Valley",
+    "country": "United States",
+    "lat": 47.6732,
+    "lon": -117.2394,
+    "population": 94919,
+    "distance_km": 119.1,
+    "bearing_deg": 181.6,
+    "compass": "south"
+   },
+   {
+    "name": "Opportunity",
+    "country": "United States",
+    "lat": 47.6499,
+    "lon": -117.2399,
+    "population": 25877,
+    "distance_km": 121.7,
+    "bearing_deg": 181.5,
+    "compass": "south"
+   },
+   {
+    "name": "Spokane",
+    "country": "United States",
+    "lat": 47.6597,
+    "lon": -117.4291,
+    "population": 229447,
+    "distance_km": 121.8,
+    "bearing_deg": 188.2,
+    "compass": "south"
+   },
+   {
+    "name": "Coeur d'Alene",
+    "country": "United States",
+    "lat": 47.6777,
+    "lon": -116.7805,
+    "population": 49122,
+    "distance_km": 122.5,
+    "bearing_deg": 165.3,
+    "compass": "south"
+   }
+  ],
+  "uncertainty": {
+   "certificate_radius_km": 312.5,
+   "credible_radius_km": 201.4,
+   "region_centre": {
+    "lat": 49.33645,
+    "lon": -117.29846
+   },
+   "method": "intersection of speed-of-light spherical caps"
+  },
+  "model_refined": {
+   "lat": 50.09278,
+   "lon": -117.06877,
+   "place": "Cranbrook",
+   "separation_km": 150.2
+  },
+  "measurement": {
+   "anchors_total": 1600,
+   "anchors_used": 1564,
+   "response_rate": 0.9775,
+   "min_rtt_ms": 0.14,
+   "elapsed_s": 75.1,
+   "backend": "icmp-posix",
+   "samples_per_anchor": 8
+  },
+  "delay_model": {
+   "k_km_per_ms": 102.15,
+   "beta_ms": 0.7962,
+   "mu_log_detour": 0.32,
+   "sigma_log_detour": 0.2576,
+   "implied_median_detour": 1.3771,
+   "pi_outlier": 0.04,
+   "mu_out_log_rtt": 5.5319,
+   "sigma_out_log_rtt": 0.6,
+   "fiber_cone_km_per_ms": 102.15,
+   "vacuum_cone_km_per_ms": 149.896
+  },
+  "diagnostics": {
+   "responding_anchors": 1564,
+   "attempted_anchors": 1600,
+   "response_rate": 0.9775,
+   "nearest_anchor": {
+    "key": "speedtest:46412",
+    "rtt_ms": 0.99,
+    "certificate_radius_km": 299.0,
+    "source": "speedtest",
+    "city": "Victoria, BC",
+    "country": "CA"
+   },
+   "implied_median_detour": 1.3771,
+   "min_observed_rtt_ms": 0.14,
+   "median_observed_rtt_ms": 137.76,
+   "max_observed_rtt_ms": 302.84,
+   "constraints_violated_at_certificate": 32,
+   "violated_keys": [
+    "ripe-atlas:1151",
+    "ripe-atlas:1404",
+    "ripe-atlas:1518",
+    "ripe-atlas:1679",
+    "ripe-atlas:2057",
+    "ripe-atlas:2236",
+    "ripe-atlas:2263",
+    "ripe-atlas:2541",
+    "ripe-atlas:2747",
+    "ripe-atlas:3087",
+    "ripe-atlas:3095",
+    "ripe-atlas:3367",
+    "ripe-atlas:3446",
+    "ripe-atlas:3803",
+    "ripe-atlas:3821",
+    "ripe-atlas:3848",
+    "ripe-atlas:4025",
+    "ripe-atlas:4116",
+    "ripe-atlas:4461",
+    "ripe-atlas:4496"
+   ],
+   "model_inconsistent_anchors": 262,
+   "model_inconsistent_frac": 0.1675,
+   "suspected_mislocated_or_anycast": [
+    {
+     "key": "speedtest:46417",
+     "source": "speedtest",
+     "advertised_km": 4026.0,
+     "rtt_implied_km": 0.0,
+     "rtt_ms": 0.44,
+     "responsibility": 0.0
+    },
+    {
+     "key": "speedtest:46425",
+     "source": "speedtest",
+     "advertised_km": 3875.0,
+     "rtt_implied_km": 51.0,
+     "rtt_ms": 1.49,
+     "responsibility": 0.0
+    },
+    {
+     "key": "ripe-atlas:1404",
+     "source": "ripe-atlas",
+     "advertised_km": 3320.0,
+     "rtt_implied_km": 126.0,
+     "rtt_ms": 2.49,
+     "responsibility": 0.0
+    },
+    {
+     "key": "speedtest:68470",
+     "source": "speedtest",
+     "advertised_km": 9493.0,
+     "rtt_implied_km": 6300.0,
+     "rtt_ms": 85.73,
+     "responsibility": 0.0
+    },
+    {
+     "key": "ripe-atlas:3367",
+     "source": "ripe-atlas",
+     "advertised_km": 3316.0,
+     "rtt_implied_km": 125.0,
+     "rtt_ms": 2.48,
+     "responsibility": 0.0
+    },
+    {
+     "key": "ripe-atlas:3803",
+     "source": "ripe-atlas",
+     "advertised_km": 3320.0,
+     "rtt_implied_km": 165.0,
+     "rtt_ms": 3.03,
+     "responsibility": 0.0
+    },
+    {
+     "key": "ripe-atlas:2236",
+     "source": "ripe-atlas",
+     "advertised_km": 3354.0,
+     "rtt_implied_km": 267.0,
+     "rtt_ms": 4.4,
+     "responsibility": 0.0
+    },
+    {
+     "key": "speedtest:72517",
+     "source": "speedtest",
+     "advertised_km": 9908.0,
+     "rtt_implied_km": 6880.0,
+     "rtt_ms": 93.55,
+     "responsibility": 0.0
+    },
+    {
+     "key": "ripe-atlas:2747",
+     "source": "ripe-atlas",
+     "advertised_km": 3476.0,
+     "rtt_implied_km": 495.0,
+     "rtt_ms": 7.47,
+     "responsibility": 0.0
+    },
+    {
+     "key": "speedtest:56177",
+     "source": "speedtest",
+     "advertised_km": 9908.0,
+     "rtt_implied_km": 6952.0,
+     "rtt_ms": 94.51,
+     "responsibility": 0.0
+    },
+    {
+     "key": "speedtest:46420",
+     "source": "speedtest",
+     "advertised_km": 3822.0,
+     "rtt_implied_km": 877.0,
+     "rtt_ms": 12.62,
+     "responsibility": 0.0
+    },
+    {
+     "key": "ripe-atlas:4116",
+     "source": "ripe-atlas",
+     "advertised_km": 3475.0,
+     "rtt_implied_km": 555.0,
+     "rtt_ms": 8.27,
+     "responsibility": 0.0
+    }
+   ],
+   "n_suspected": 32,
+   "suspected_frac": 0.0205
+  },
+  "calibration": null
+ },
+ "score": {
+  "truth": {
+   "lat": 33.38195,
+   "lon": -98.49412,
+   "spread_km": 2160.4,
+   "n_sources": 4,
+   "sources": [
+    {
+     "provider": "ip-api",
+     "ok": true,
+     "lat": 29.4252,
+     "lon": -98.4946,
+     "city": "San Antonio",
+     "country": "US"
+    },
+    {
+     "provider": "ipinfo",
+     "ok": true,
+     "lat": 38.9371,
+     "lon": -77.4128,
+     "city": "Floris",
+     "country": "US"
+    },
+    {
+     "provider": "ipwho",
+     "ok": true,
+     "lat": 29.4241,
+     "lon": -98.4936,
+     "city": "San Antonio",
+     "country": "US"
+    },
+    {
+     "provider": "freeipapi",
+     "ok": true,
+     "lat": 37.3387,
+     "lon": -121.885,
+     "city": "San Jose",
+     "country": "US"
+    }
+   ],
+   "note": "providers disagree by more than 250 km, which is common when an ISP registers subscriber blocks at a regional hub; the true location may be anywhere in this spread"
+  },
+  "error_km": 2306.2,
+  "inside_bound": false
+ },
+ "photolog": [
+  "web_scanning.jpg",
+  "web_final.jpg"
+ ]
+}

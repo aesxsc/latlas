@@ -217,15 +217,27 @@ def summarise(result: dict, *, campaign_meta: dict | None = None,
     A("UNCERTAINTY")
     tol = cert.get("consensus_region")
     strict = cert.get("strict_region")
-    A(f"  certificate (speed-of-light cones, no statistical assumptions)")
+    hard = cert.get("is_hard_bound", True)
+    if hard:
+        A(f"  certificate (speed-of-light cones, no statistical assumptions)")
+    else:
+        A(f"  BEST-EFFORT REGION -- NOT A BOUND")
     if tol:
         A(f"    region         : cap centred {_fmt_latlon(tol['centre_lat'], tol['centre_lon'])}")
         A(f"    radius         : {_fmt_km(tol['radius_km'])}  "
           f"(diameter {_fmt_km(tol['diameter_km'])})")
-    A(f"    validity       : holds provided no more than "
-      f"{cert.get('min_violations_achievable', '?')} of the "
-      f"{cert.get('anchors_used', '?')} anchors are mislocated or anycast "
-      f"({100 * cert.get('tolerance_frac', 0):.2f}%)")
+    if hard:
+        A(f"    validity       : holds provided no more than "
+          f"{cert.get('min_violations_achievable', '?')} of the "
+          f"{cert.get('anchors_used', '?')} anchors are mislocated or anycast")
+    else:
+        A(f"    \u26a0 {cert.get('contradictions', '?')} of "
+          f"{cert.get('anchors_used', '?')} constraints "
+          f"({100 * cert.get('contradiction_frac', 0):.1f}%) cannot be satisfied "
+          f"by any location.")
+        A(f"      The anchor set contradicts itself, so no hard bound exists and")
+        A(f"      the radius above is a rough scale, not a guarantee. Treat the")
+        A(f"      position as unreliable.")
     A(f"    propagation    : {cert.get('max_km_per_ms', '?')} km per ms of RTT "
       f"(vacuum light speed; valid for fibre and satellite alike)")
     if strict:

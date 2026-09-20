@@ -1,0 +1,7 @@
+status: complete
+coord: 52.352°N, 4.9558°E
+place: at Diemen
+bound: ±688 km
+anchors: 1569 / 1600
+hist: 1546 replies
+spark: region extent, 40 updates

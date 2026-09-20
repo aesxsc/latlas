@@ -1,0 +1,9 @@
+host        runnervmlun5p  (Linux-6.17.0-1022-azure-x86_64-with-glibc2.39)
+python      3.12.14   backend tcp-connect  DEGRADED
+anchors     1577/1600 replied  (98.6%)
+closest RTT 3.87 ms   scan 135.5 s
+estimate    {'lat': 45.31601, 'lon': -68.82694}   58 km south of Bangor, United States
+bound       +/-801.0 km
+truth       46.8127,-71.21452
+error       248.2 km   inside_bound=True
+photolog    web_scanning.jpg, web_final.jpg

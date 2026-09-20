@@ -1,0 +1,217 @@
+{
+ "position": {
+  "lat": 52.3531,
+  "lon": 4.94969
+ },
+ "place": "at Amsterdam-Oost, The Netherlands",
+ "nearest": [
+  {
+   "name": "Amsterdam-Oost",
+   "country": "The Netherlands",
+   "lat": 52.3521,
+   "lon": 4.9335,
+   "population": 135767,
+   "distance_km": 1.1,
+   "bearing_deg": 264.2,
+   "compass": "west"
+  },
+  {
+   "name": "Diemen",
+   "country": "The Netherlands",
+   "lat": 52.3396,
+   "lon": 4.9626,
+   "population": 24361,
+   "distance_km": 1.7,
+   "bearing_deg": 149.7,
+   "compass": "south-east"
+  },
+  {
+   "name": "Amsterdam-Centrum",
+   "country": "The Netherlands",
+   "lat": 52.3741,
+   "lon": 4.8994,
+   "population": 86422,
+   "distance_km": 4.1,
+   "bearing_deg": 304.4,
+   "compass": "north-west"
+  },
+  {
+   "name": "Amsterdam",
+   "country": "The Netherlands",
+   "lat": 52.374,
+   "lon": 4.8897,
+   "population": 741636,
+   "distance_km": 4.7,
+   "bearing_deg": 299.7,
+   "compass": "north-west"
+  },
+  {
+   "name": "Noord",
+   "country": "The Netherlands",
+   "lat": 52.3908,
+   "lon": 4.9099,
+   "population": 116777,
+   "distance_km": 5.0,
+   "bearing_deg": 327.2,
+   "compass": "north-west"
+  }
+ ],
+ "uncertainty": {
+  "certificate_radius_km": 681.1,
+  "credible_radius_km": 35.6,
+  "region_centre": {
+   "lat": 51.20468,
+   "lon": 3.45296
+  },
+  "method": "intersection of speed-of-light spherical caps"
+ },
+ "model_refined": {
+  "lat": 53.00323,
+  "lon": 4.4858,
+  "place": "Den Helder",
+  "separation_km": 78.8
+ },
+ "measurement": {
+  "anchors_total": 1600,
+  "anchors_used": 1570,
+  "response_rate": 0.9812,
+  "min_rtt_ms": 2.47,
+  "elapsed_s": 163.1,
+  "backend": "tcp-connect",
+  "samples_per_anchor": 8
+ },
+ "delay_model": {
+  "k_km_per_ms": 102.15,
+  "beta_ms": 1.35,
+  "mu_log_detour": 0.65,
+  "sigma_log_detour": 0.1588,
+  "implied_median_detour": 1.9155,
+  "pi_outlier": 0.04,
+  "mu_out_log_rtt": 5.5666,
+  "sigma_out_log_rtt": 0.6,
+  "fiber_cone_km_per_ms": 102.15,
+  "vacuum_cone_km_per_ms": 149.896
+ },
+ "diagnostics": {
+  "responding_anchors": 1570,
+  "attempted_anchors": 1600,
+  "response_rate": 0.9812,
+  "nearest_anchor": {
+   "key": "ripe-atlas:4583",
+   "rtt_ms": 4.94,
+   "certificate_radius_km": 890.0,
+   "source": "ripe-atlas",
+   "city": "Rijen",
+   "country": "NL"
+  },
+  "implied_median_detour": 1.9155,
+  "min_observed_rtt_ms": 2.47,
+  "median_observed_rtt_ms": 149.64,
+  "max_observed_rtt_ms": 339.87,
+  "constraints_violated_at_certificate": 0,
+  "violated_keys": [],
+  "model_inconsistent_anchors": 121,
+  "model_inconsistent_frac": 0.0771,
+  "suspected_mislocated_or_anycast": [
+   {
+    "key": "ripe-atlas:2273",
+    "source": "ripe-atlas",
+    "advertised_km": 0.0,
+    "rtt_implied_km": 59.0,
+    "rtt_ms": 2.47,
+    "responsibility": 0.0
+   },
+   {
+    "key": "ripe-atlas:2743",
+    "source": "ripe-atlas",
+    "advertised_km": 658.0,
+    "rtt_implied_km": 1408.0,
+    "rtt_ms": 27.75,
+    "responsibility": 0.038
+   },
+   {
+    "key": "ripe-atlas:1663",
+    "source": "ripe-atlas",
+    "advertised_km": 394.0,
+    "rtt_implied_km": 1177.0,
+    "rtt_ms": 23.42,
+    "responsibility": 0.0
+   },
+   {
+    "key": "ripe-atlas:3365",
+    "source": "ripe-atlas",
+    "advertised_km": 1500.0,
+    "rtt_implied_km": 2858.0,
+    "rtt_ms": 54.95,
+    "responsibility": 0.013
+   },
+   {
+    "key": "speedtest:41675",
+    "source": "speedtest",
+    "advertised_km": 1883.0,
+    "rtt_implied_km": 3607.0,
+    "rtt_ms": 69.0,
+    "responsibility": 0.0036
+   },
+   {
+    "key": "speedtest:60452",
+    "source": "speedtest",
+    "advertised_km": 1868.0,
+    "rtt_implied_km": 3859.0,
+    "rtt_ms": 73.72,
+    "responsibility": 0.0003
+   },
+   {
+    "key": "speedtest:55310",
+    "source": "speedtest",
+    "advertised_km": 4326.0,
+    "rtt_implied_km": 6717.0,
+    "rtt_ms": 127.31,
+    "responsibility": 0.0309
+   },
+   {
+    "key": "speedtest:38950",
+    "source": "speedtest",
+    "advertised_km": 3779.0,
+    "rtt_implied_km": 6429.0,
+    "rtt_ms": 121.92,
+    "responsibility": 0.0062
+   },
+   {
+    "key": "ripe-atlas:3957",
+    "source": "ripe-atlas",
+    "advertised_km": 5758.0,
+    "rtt_implied_km": 8456.0,
+    "rtt_ms": 159.91,
+    "responsibility": 0.0411
+   },
+   {
+    "key": "speedtest:76006",
+    "source": "speedtest",
+    "advertised_km": 5763.0,
+    "rtt_implied_km": 8538.0,
+    "rtt_ms": 161.45,
+    "responsibility": 0.0353
+   },
+   {
+    "key": "speedtest:40758",
+    "source": "speedtest",
+    "advertised_km": 4326.0,
+    "rtt_implied_km": 7156.0,
+    "rtt_ms": 135.54,
+    "responsibility": 0.0081
+   },
+   {
+    "key": "speedtest:73820",
+    "source": "speedtest",
+    "advertised_km": 6774.0,
+    "rtt_implied_km": 9711.0,
+    "rtt_ms": 183.46,
+    "responsibility": 0.0434
+   }
+  ],
+  "n_suspected": 0,
+  "suspected_frac": 0.0
+ },
+ "calibration": null
+}

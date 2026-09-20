@@ -82,8 +82,13 @@ def _print_answer(res: SenseResult) -> None:
     print("\u2500" * W)
     print(f"  POSITION      {_fmt_latlon(res.lat, res.lon)}")
     print(f"  NEAREST PLACE {res.place}")
-    print(f"  ACCURACY      \u00b1{res.certificate_radius_km:,.0f} km "
-          f"(speed-of-light bound; holds regardless of routing or model error)")
+    hard = res.estimate.certificate.get("is_hard_bound", True)
+    if hard:
+        print(f"  ACCURACY      \u00b1{res.certificate_radius_km:,.0f} km "
+              f"(speed-of-light bound; holds regardless of routing or model error)")
+    else:
+        print(f"  ACCURACY      ~{res.certificate_radius_km:,.0f} km "
+              f"(NOT a bound: the anchor set contradicts itself here)")
     print("\u2500" * W)
 
     print("\n  nearest places to the estimate")

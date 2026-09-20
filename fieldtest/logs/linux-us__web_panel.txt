@@ -1,0 +1,7 @@
+status: complete
+coord: 45.3375°N, 68.8323°W
+place: at Bangor
+bound: ±803 km
+anchors: 1579 / 1600
+hist: 1579 replies
+spark: region extent, 40 updates

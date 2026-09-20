@@ -1,0 +1,7 @@
+status: complete
+coord: 18.9642°N, 72.8259°E
+place: at Dhārāvi
+bound: ±849 km
+anchors: 1580 / 1600
+hist: 1563 replies
+spark: region extent, 40 updates

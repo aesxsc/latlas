@@ -1,0 +1,9 @@
+host        codespaces-77b8d3  (Linux-6.8.0-1064-azure-x86_64-with-glibc2.39)
+python      3.14.2   backend tcp-connect  DEGRADED
+anchors     1585/1600 replied  (99.1%)
+closest RTT 1.25 ms   scan 132.6 s
+estimate    {'lat': 39.0161, 'lon': -77.45885}   at Sterling, United States
+bound       +/-443.3 km
+truth       38.96636,-77.4516
+error       5.6 km   inside_bound=True
+photolog    web_scanning.jpg, web_final.jpg

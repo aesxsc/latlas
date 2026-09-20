@@ -1,0 +1,217 @@
+{
+ "position": {
+  "lat": 18.9641,
+  "lon": 72.82189
+ },
+ "place": "at Dh\u0101r\u0101vi, India",
+ "nearest": [
+  {
+   "name": "Dh\u0101r\u0101vi",
+   "country": "India",
+   "lat": 19.05,
+   "lon": 72.8667,
+   "population": 700000,
+   "distance_km": 10.7,
+   "bearing_deg": 26.2,
+   "compass": "north-east"
+  },
+  {
+   "name": "Mumbai",
+   "country": "India",
+   "lat": 19.0728,
+   "lon": 72.8826,
+   "population": 12691836,
+   "distance_km": 13.7,
+   "bearing_deg": 27.8,
+   "compass": "north-east"
+  },
+  {
+   "name": "Uran",
+   "country": "India",
+   "lat": 18.8781,
+   "lon": 72.9392,
+   "population": 30439,
+   "distance_km": 15.6,
+   "bearing_deg": 127.8,
+   "compass": "south-east"
+  },
+  {
+   "name": "Chanaje",
+   "country": "India",
+   "lat": 18.8613,
+   "lon": 72.9526,
+   "population": 16714,
+   "distance_km": 17.9,
+   "bearing_deg": 129.7,
+   "compass": "south-east"
+  },
+  {
+   "name": "Powai",
+   "country": "India",
+   "lat": 19.1164,
+   "lon": 72.9047,
+   "population": 20000,
+   "distance_km": 19.0,
+   "bearing_deg": 27.2,
+   "compass": "north-east"
+  }
+ ],
+ "uncertainty": {
+  "certificate_radius_km": 851.9,
+  "credible_radius_km": 53.8,
+  "region_centre": {
+   "lat": 19.98141,
+   "lon": 71.13841
+  },
+  "method": "intersection of speed-of-light spherical caps"
+ },
+ "model_refined": {
+  "lat": 17.28898,
+  "lon": 71.34875,
+  "place": "Shrivardhan",
+  "separation_km": 242.7
+ },
+ "measurement": {
+  "anchors_total": 1600,
+  "anchors_used": 1581,
+  "response_rate": 0.9881,
+  "min_rtt_ms": 3.32,
+  "elapsed_s": 167.1,
+  "backend": "tcp-connect",
+  "samples_per_anchor": 8
+ },
+ "delay_model": {
+  "k_km_per_ms": 102.15,
+  "beta_ms": 0.7462,
+  "mu_log_detour": 0.68,
+  "sigma_log_detour": 0.2821,
+  "implied_median_detour": 1.9739,
+  "pi_outlier": 0.04,
+  "mu_out_log_rtt": 5.8492,
+  "sigma_out_log_rtt": 0.6,
+  "fiber_cone_km_per_ms": 102.15,
+  "vacuum_cone_km_per_ms": 149.896
+ },
+ "diagnostics": {
+  "responding_anchors": 1581,
+  "attempted_anchors": 1600,
+  "response_rate": 0.9881,
+  "nearest_anchor": {
+   "key": "ripe-atlas:4530",
+   "rtt_ms": 5.16,
+   "certificate_radius_km": 924.0,
+   "source": "ripe-atlas",
+   "city": "Mumbai",
+   "country": "IN"
+  },
+  "implied_median_detour": 1.9739,
+  "min_observed_rtt_ms": 3.32,
+  "median_observed_rtt_ms": 207.13,
+  "max_observed_rtt_ms": 408.26,
+  "constraints_violated_at_certificate": 0,
+  "violated_keys": [],
+  "model_inconsistent_anchors": 211,
+  "model_inconsistent_frac": 0.1335,
+  "suspected_mislocated_or_anycast": [
+   {
+    "key": "speedtest:69089",
+    "source": "speedtest",
+    "advertised_km": 6030.0,
+    "rtt_implied_km": 3015.0,
+    "rtt_ms": 59.0,
+    "responsibility": 0.0
+   },
+   {
+    "key": "speedtest:43889",
+    "source": "speedtest",
+    "advertised_km": 0.0,
+    "rtt_implied_km": 133.0,
+    "rtt_ms": 3.32,
+    "responsibility": 0.0
+   },
+   {
+    "key": "speedtest:15224",
+    "source": "speedtest",
+    "advertised_km": 0.0,
+    "rtt_implied_km": 165.0,
+    "rtt_ms": 3.94,
+    "responsibility": 0.0
+   },
+   {
+    "key": "speedtest:15156",
+    "source": "speedtest",
+    "advertised_km": 1579.0,
+    "rtt_implied_km": 4085.0,
+    "rtt_ms": 79.68,
+    "responsibility": 0.043
+   },
+   {
+    "key": "ripe-atlas:4395",
+    "source": "ripe-atlas",
+    "advertised_km": 1538.0,
+    "rtt_implied_km": 4098.0,
+    "rtt_ms": 79.94,
+    "responsibility": 0.0301
+   },
+   {
+    "key": "ripe-atlas:4422",
+    "source": "ripe-atlas",
+    "advertised_km": 1548.0,
+    "rtt_implied_km": 4311.0,
+    "rtt_ms": 84.05,
+    "responsibility": 0.0136
+   },
+   {
+    "key": "speedtest:70337",
+    "source": "speedtest",
+    "advertised_km": 1966.0,
+    "rtt_implied_km": 4885.0,
+    "rtt_ms": 95.15,
+    "responsibility": 0.0296
+   },
+   {
+    "key": "speedtest:40699",
+    "source": "speedtest",
+    "advertised_km": 1603.0,
+    "rtt_implied_km": 4756.0,
+    "rtt_ms": 92.65,
+    "responsibility": 0.0037
+   },
+   {
+    "key": "speedtest:7915",
+    "source": "speedtest",
+    "advertised_km": 888.0,
+    "rtt_implied_km": 4397.0,
+    "rtt_ms": 85.71,
+    "responsibility": 0.0
+   },
+   {
+    "key": "speedtest:20295",
+    "source": "speedtest",
+    "advertised_km": 2765.0,
+    "rtt_implied_km": 6588.0,
+    "rtt_ms": 128.05,
+    "responsibility": 0.0139
+   },
+   {
+    "key": "speedtest:13610",
+    "source": "speedtest",
+    "advertised_km": 2454.0,
+    "rtt_implied_km": 6344.0,
+    "rtt_ms": 123.32,
+    "responsibility": 0.0064
+   },
+   {
+    "key": "speedtest:73622",
+    "source": "speedtest",
+    "advertised_km": 4154.0,
+    "rtt_implied_km": 8164.0,
+    "rtt_ms": 158.51,
+    "responsibility": 0.0416
+   }
+  ],
+  "n_suspected": 0,
+  "suspected_frac": 0.0
+ },
+ "calibration": null
+}

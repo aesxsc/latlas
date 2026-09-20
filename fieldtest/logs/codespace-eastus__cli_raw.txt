@@ -1,0 +1,217 @@
+{
+ "position": {
+  "lat": 39.0161,
+  "lon": -77.45885
+ },
+ "place": "at Sterling, United States",
+ "nearest": [
+  {
+   "name": "Sterling",
+   "country": "United States",
+   "lat": 39.0062,
+   "lon": -77.4286,
+   "population": 27822,
+   "distance_km": 2.8,
+   "bearing_deg": 112.8,
+   "compass": "south-east"
+  },
+  {
+   "name": "Ashburn",
+   "country": "United States",
+   "lat": 39.0437,
+   "lon": -77.4875,
+   "population": 43511,
+   "distance_km": 3.9,
+   "bearing_deg": 321.1,
+   "compass": "north-west"
+  },
+  {
+   "name": "Herndon",
+   "country": "United States",
+   "lat": 38.9695,
+   "lon": -77.3861,
+   "population": 24568,
+   "distance_km": 8.1,
+   "bearing_deg": 129.5,
+   "compass": "south-east"
+  },
+  {
+   "name": "Oak Hill",
+   "country": "United States",
+   "lat": 38.9258,
+   "lon": -77.4016,
+   "population": 33811,
+   "distance_km": 11.2,
+   "bearing_deg": 153.7,
+   "compass": "south-east"
+  },
+  {
+   "name": "South Riding",
+   "country": "United States",
+   "lat": 38.9209,
+   "lon": -77.5039,
+   "population": 24256,
+   "distance_km": 11.3,
+   "bearing_deg": 200.2,
+   "compass": "south"
+  }
+ ],
+ "uncertainty": {
+  "certificate_radius_km": 443.3,
+  "credible_radius_km": 30.4,
+  "region_centre": {
+   "lat": 38.42795,
+   "lon": -78.51946
+  },
+  "method": "intersection of speed-of-light spherical caps"
+ },
+ "model_refined": {
+  "lat": 38.55016,
+  "lon": -76.90162,
+  "place": "St. Charles",
+  "separation_km": 70.8
+ },
+ "measurement": {
+  "anchors_total": 1600,
+  "anchors_used": 1585,
+  "response_rate": 0.9906,
+  "min_rtt_ms": 1.25,
+  "elapsed_s": 132.6,
+  "backend": "tcp-connect",
+  "samples_per_anchor": 8
+ },
+ "delay_model": {
+  "k_km_per_ms": 102.15,
+  "beta_ms": 0.5238,
+  "mu_log_detour": 0.6,
+  "sigma_log_detour": 0.2082,
+  "implied_median_detour": 1.8221,
+  "pi_outlier": 0.04,
+  "mu_out_log_rtt": 5.5299,
+  "sigma_out_log_rtt": 0.6,
+  "fiber_cone_km_per_ms": 102.15,
+  "vacuum_cone_km_per_ms": 149.896
+ },
+ "diagnostics": {
+  "responding_anchors": 1585,
+  "attempted_anchors": 1600,
+  "response_rate": 0.9906,
+  "nearest_anchor": {
+   "key": "ripe-atlas:1404",
+   "rtt_ms": 1.25,
+   "certificate_radius_km": 338.0,
+   "source": "ripe-atlas",
+   "city": "Ashburn",
+   "country": "US"
+  },
+  "implied_median_detour": 1.8221,
+  "min_observed_rtt_ms": 1.25,
+  "median_observed_rtt_ms": 137.82,
+  "max_observed_rtt_ms": 348.1,
+  "constraints_violated_at_certificate": 0,
+  "violated_keys": [],
+  "model_inconsistent_anchors": 71,
+  "model_inconsistent_frac": 0.0448,
+  "suspected_mislocated_or_anycast": [
+   {
+    "key": "ripe-atlas:2155",
+    "source": "ripe-atlas",
+    "advertised_km": 3858.0,
+    "rtt_implied_km": 1749.0,
+    "rtt_ms": 31.72,
+    "responsibility": 0.0
+   },
+   {
+    "key": "ripe-atlas:1404",
+    "source": "ripe-atlas",
+    "advertised_km": 0.0,
+    "rtt_implied_km": 41.0,
+    "rtt_ms": 1.25,
+    "responsibility": 0.0
+   },
+   {
+    "key": "ripe-atlas:3367",
+    "source": "ripe-atlas",
+    "advertised_km": 4.0,
+    "rtt_implied_km": 58.0,
+    "rtt_ms": 1.56,
+    "responsibility": 0.0
+   },
+   {
+    "key": "ripe-atlas:3803",
+    "source": "ripe-atlas",
+    "advertised_km": 2.0,
+    "rtt_implied_km": 98.0,
+    "rtt_ms": 2.27,
+    "responsibility": 0.0
+   },
+   {
+    "key": "ripe-atlas:4303",
+    "source": "ripe-atlas",
+    "advertised_km": 560.0,
+    "rtt_implied_km": 1749.0,
+    "rtt_ms": 31.72,
+    "responsibility": 0.0003
+   },
+   {
+    "key": "speedtest:9490",
+    "source": "speedtest",
+    "advertised_km": 1638.0,
+    "rtt_implied_km": 3414.0,
+    "rtt_ms": 61.42,
+    "responsibility": 0.0349
+   },
+   {
+    "key": "speedtest:17395",
+    "source": "speedtest",
+    "advertised_km": 1965.0,
+    "rtt_implied_km": 3891.0,
+    "rtt_ms": 69.92,
+    "responsibility": 0.0434
+   },
+   {
+    "key": "speedtest:25266",
+    "source": "speedtest",
+    "advertised_km": 1965.0,
+    "rtt_implied_km": 3891.0,
+    "rtt_ms": 69.93,
+    "responsibility": 0.0433
+   },
+   {
+    "key": "ripe-atlas:4714",
+    "source": "ripe-atlas",
+    "advertised_km": 1113.0,
+    "rtt_implied_km": 3109.0,
+    "rtt_ms": 55.97,
+    "responsibility": 0.0002
+   },
+   {
+    "key": "ripe-atlas:3490",
+    "source": "ripe-atlas",
+    "advertised_km": 1476.0,
+    "rtt_implied_km": 3742.0,
+    "rtt_ms": 67.27,
+    "responsibility": 0.0005
+   },
+   {
+    "key": "speedtest:47331",
+    "source": "speedtest",
+    "advertised_km": 1405.0,
+    "rtt_implied_km": 3938.0,
+    "rtt_ms": 70.76,
+    "responsibility": 0.0
+   },
+   {
+    "key": "speedtest:10817",
+    "source": "speedtest",
+    "advertised_km": 2698.0,
+    "rtt_implied_km": 5338.0,
+    "rtt_ms": 95.74,
+    "responsibility": 0.0123
+   }
+  ],
+  "n_suspected": 0,
+  "suspected_frac": 0.0
+ },
+ "calibration": null
+}

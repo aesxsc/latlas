@@ -1,0 +1,284 @@
+{
+ "env": {
+  "label": "codespace-westus2",
+  "hostname": "codespaces-3557cf",
+  "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.39",
+  "system": "Linux",
+  "release": "6.8.0-1064-azure",
+  "machine": "x86_64",
+  "python": "3.14.2",
+  "python_impl": "CPython",
+  "cpu_count": 2,
+  "started": "2026-09-20T19:06:29Z",
+  "uname": "Linux codespaces-3557cf 6.8.0-1064-azure #72~22.04.1-Ubuntu SMP Wed Jul 22 23:39:45 UTC 2026 x86_64 x86_64",
+  "backend": "tcp-connect",
+  "backend_degraded": true,
+  "nproc": "2"
+ },
+ "result": {
+  "position": {
+   "lat": 47.61428,
+   "lon": -122.33831
+  },
+  "place": "at Seattle, United States",
+  "nearest": [
+   {
+    "name": "Seattle",
+    "country": "United States",
+    "lat": 47.6062,
+    "lon": -122.3321,
+    "population": 780995,
+    "distance_km": 1.0,
+    "bearing_deg": 152.6,
+    "compass": "south-east"
+   },
+   {
+    "name": "Columbia City",
+    "country": "United States",
+    "lat": 47.564,
+    "lon": -122.2754,
+    "population": 19000,
+    "distance_km": 7.3,
+    "bearing_deg": 139.8,
+    "compass": "south-east"
+   },
+   {
+    "name": "Mercer Island",
+    "country": "United States",
+    "lat": 47.5707,
+    "lon": -122.2221,
+    "population": 25042,
+    "distance_km": 10.0,
+    "bearing_deg": 119.0,
+    "compass": "south-east"
+   },
+   {
+    "name": "Bellevue",
+    "country": "United States",
+    "lat": 47.6104,
+    "lon": -122.2007,
+    "population": 139820,
+    "distance_km": 10.3,
+    "bearing_deg": 92.3,
+    "compass": "east"
+   },
+   {
+    "name": "Kirkland",
+    "country": "United States",
+    "lat": 47.6815,
+    "lon": -122.2087,
+    "population": 87281,
+    "distance_km": 12.3,
+    "bearing_deg": 52.4,
+    "compass": "north-east"
+   }
+  ],
+  "uncertainty": {
+   "certificate_radius_km": 1161.8,
+   "credible_radius_km": 52.7,
+   "region_centre": {
+    "lat": 45.06536,
+    "lon": -121.58001
+   },
+   "method": "intersection of speed-of-light spherical caps"
+  },
+  "model_refined": {
+   "lat": 46.79817,
+   "lon": -125.54434,
+   "place": "Aberdeen",
+   "separation_km": 258.6
+  },
+  "measurement": {
+   "anchors_total": 1600,
+   "anchors_used": 1585,
+   "response_rate": 0.9906,
+   "min_rtt_ms": 4.86,
+   "elapsed_s": 138.2,
+   "backend": "tcp-connect",
+   "samples_per_anchor": 8
+  },
+  "delay_model": {
+   "k_km_per_ms": 102.15,
+   "beta_ms": 1.35,
+   "mu_log_detour": 0.6,
+   "sigma_log_detour": 0.1338,
+   "implied_median_detour": 1.8221,
+   "pi_outlier": 0.04,
+   "mu_out_log_rtt": 5.575,
+   "sigma_out_log_rtt": 0.6,
+   "fiber_cone_km_per_ms": 102.15,
+   "vacuum_cone_km_per_ms": 149.896
+  },
+  "diagnostics": {
+   "responding_anchors": 1585,
+   "attempted_anchors": 1600,
+   "response_rate": 0.9906,
+   "nearest_anchor": {
+    "key": "ripe-atlas:2536",
+    "rtt_ms": 4.86,
+    "certificate_radius_km": 878.0,
+    "source": "ripe-atlas",
+    "city": "Seattle",
+    "country": "US"
+   },
+   "implied_median_detour": 1.8221,
+   "min_observed_rtt_ms": 4.86,
+   "median_observed_rtt_ms": 174.28,
+   "max_observed_rtt_ms": 410.49,
+   "constraints_violated_at_certificate": 0,
+   "violated_keys": [],
+   "model_inconsistent_anchors": 216,
+   "model_inconsistent_frac": 0.1363,
+   "suspected_mislocated_or_anycast": [
+    {
+     "key": "ripe-atlas:1401",
+     "source": "ripe-atlas",
+     "advertised_km": 12984.0,
+     "rtt_implied_km": 8695.0,
+     "rtt_ms": 156.46,
+     "responsibility": 0.0113
+    },
+    {
+     "key": "speedtest:60412",
+     "source": "speedtest",
+     "advertised_km": 13182.0,
+     "rtt_implied_km": 8938.0,
+     "rtt_ms": 160.78,
+     "responsibility": 0.0138
+    },
+    {
+     "key": "ripe-atlas:4425",
+     "source": "ripe-atlas",
+     "advertised_km": 12984.0,
+     "rtt_implied_km": 8814.0,
+     "rtt_ms": 158.57,
+     "responsibility": 0.0146
+    },
+    {
+     "key": "speedtest:39108",
+     "source": "speedtest",
+     "advertised_km": 12469.0,
+     "rtt_implied_km": 8340.0,
+     "rtt_ms": 150.11,
+     "responsibility": 0.0121
+    },
+    {
+     "key": "speedtest:6355",
+     "source": "speedtest",
+     "advertised_km": 12469.0,
+     "rtt_implied_km": 8344.0,
+     "rtt_ms": 150.19,
+     "responsibility": 0.0123
+    },
+    {
+     "key": "ripe-atlas:2735",
+     "source": "ripe-atlas",
+     "advertised_km": 12987.0,
+     "rtt_implied_km": 8898.0,
+     "rtt_ms": 160.06,
+     "responsibility": 0.0174
+    },
+    {
+     "key": "ripe-atlas:3256",
+     "source": "ripe-atlas",
+     "advertised_km": 12977.0,
+     "rtt_implied_km": 8909.0,
+     "rtt_ms": 160.27,
+     "responsibility": 0.0181
+    },
+    {
+     "key": "ripe-atlas:2609",
+     "source": "ripe-atlas",
+     "advertised_km": 12975.0,
+     "rtt_implied_km": 8926.0,
+     "rtt_ms": 160.56,
+     "responsibility": 0.0188
+    },
+    {
+     "key": "ripe-atlas:3072",
+     "source": "ripe-atlas",
+     "advertised_km": 12971.0,
+     "rtt_implied_km": 8925.0,
+     "rtt_ms": 160.55,
+     "responsibility": 0.0189
+    },
+    {
+     "key": "ripe-atlas:3578",
+     "source": "ripe-atlas",
+     "advertised_km": 12987.0,
+     "rtt_implied_km": 8958.0,
+     "rtt_ms": 161.14,
+     "responsibility": 0.0196
+    },
+    {
+     "key": "speedtest:74724",
+     "source": "speedtest",
+     "advertised_km": 13582.0,
+     "rtt_implied_km": 9576.0,
+     "rtt_ms": 172.16,
+     "responsibility": 0.0261
+    },
+    {
+     "key": "speedtest:62436",
+     "source": "speedtest",
+     "advertised_km": 13417.0,
+     "rtt_implied_km": 9419.0,
+     "rtt_ms": 169.37,
+     "responsibility": 0.0249
+    }
+   ],
+   "n_suspected": 0,
+   "suspected_frac": 0.0
+  },
+  "calibration": null
+ },
+ "score": {
+  "truth": {
+   "lat": 47.23365,
+   "lon": -119.85228,
+   "spread_km": 44.9,
+   "n_sources": 4,
+   "sources": [
+    {
+     "provider": "ip-api",
+     "ok": true,
+     "lat": 47.233,
+     "lon": -119.852,
+     "city": "Quincy",
+     "country": "US"
+    },
+    {
+     "provider": "ipinfo",
+     "ok": true,
+     "lat": 47.1301,
+     "lon": -119.2781,
+     "city": "Moses Lake",
+     "country": "US"
+    },
+    {
+     "provider": "ipwho",
+     "ok": true,
+     "lat": 47.2343,
+     "lon": -119.8526,
+     "city": "Quincy",
+     "country": "US"
+    },
+    {
+     "provider": "freeipapi",
+     "ok": true,
+     "lat": 47.2343,
+     "lon": -119.853,
+     "city": "Quincy",
+     "country": "US"
+    }
+   ],
+   "note": ""
+  },
+  "error_km": 191.7,
+  "inside_bound": true
+ },
+ "photolog": [
+  "web_scanning.jpg",
+  "web_final.jpg"
+ ]
+}

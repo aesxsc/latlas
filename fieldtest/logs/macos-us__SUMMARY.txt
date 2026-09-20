@@ -1,0 +1,9 @@
+host        iad20-gt1017-7ed24533-2045-41f5-944b-59444e45498c-82963E880FC0.local  (macOS-26.6.2-arm64-arm-64bit)
+python      3.12.10   backend icmp-posix
+anchors     1564/1600 replied  (97.8%)
+closest RTT 0.14 ms   scan 75.1 s
+estimate    {'lat': 48.7443, 'lon': -117.19635}   116 km south of Post Falls, United States
+bound       +/-312.5 km
+truth       33.38195,-98.49412
+error       2306.2 km   inside_bound=False
+photolog    web_scanning.jpg, web_final.jpg

@@ -1,0 +1,7 @@
+status: complete
+coord: 47.6139°N, 122.339°W
+place: at Seattle
+bound: ±1,136 km
+anchors: 1585 / 1600
+hist: 1494 replies
+spark: region extent, 38 updates

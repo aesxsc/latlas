@@ -745,13 +745,25 @@ def _certificate_summary(points: np.ndarray, ev: Evaluation, mask: np.ndarray,
     being mislocated or anycast -- not on the statistical model at all.
     """
     strict = ev.violation_count == 0
+    n_anch = max(1, len(con))
     out: dict = {
         "method": "intersection of speed-of-light spherical caps",
         "max_km_per_ms": round(MAX_KM_PER_MS, 3),
         "quantum_slack_ms": QUANTUM_MS,
         "anchors_used": len(con),
         "min_violations_achievable": int(v_star),
-        "tolerance_frac": round(v_star / max(1, len(con)), 5),
+        "tolerance_frac": round(v_star / n_anch, 5),
+        # A non-zero minimum means no location satisfies every constraint, so the
+        # anchor set contradicts itself and the radius below is not a bound at
+        # all -- it is the best available compromise. Field testing hit this on a
+        # cloud network where a cluster of servers, each claiming to be in one
+        # region, all answered from somewhere else at sub-millisecond latency.
+        # They agree with each other, so no leave-one-out test can separate them
+        # from the truth, and the only honest response is to say the bound does
+        # not hold rather than to print a confident-looking radius.
+        "is_hard_bound": bool(v_star == 0),
+        "contradictions": int(v_star),
+        "contradiction_frac": round(v_star / n_anch, 5),
     }
     for name, m in (("strict", strict), ("consensus", mask)):
         if m.any():

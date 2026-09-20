@@ -1,0 +1,11 @@
+=== latlas field test: codespace-westus2 ===
+platform : Linux-6.8.0-1064-azure-x86_64-with-glibc2.39
+python   : 3.14.2 (CPython)
+cpus     : 2
+backend  : tcp-connect  [DEGRADED - tcp fallback]
+--- latlas --quick --json ---
+estimate 47.6143,-122.3383  place='at Seattle, United States'  bound=+/-1162 km  anchors=1585/1600
+truth 47.2336,-119.8523 (spread 45 km)  error 191.7 km  inside_bound=True
+--- web UI photolog ---
+  captured web_scanning.jpg at 810 / 1600
+  captured web_final.png  status=complete coord=47.6139°N, 122.339°W

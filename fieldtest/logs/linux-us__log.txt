@@ -1,0 +1,11 @@
+=== latlas field test: linux-us ===
+platform : Linux-6.17.0-1022-azure-x86_64-with-glibc2.39
+python   : 3.12.14 (CPython)
+cpus     : 4
+backend  : tcp-connect  [DEGRADED - tcp fallback]
+--- latlas --quick --json ---
+estimate 45.3160,-68.8269  place='58 km south of Bangor, United States'  bound=+/-801 km  anchors=1577/1600
+truth 46.8127,-71.2145 (spread 1 km)  error 248.2 km  inside_bound=True
+--- web UI photolog ---
+  captured web_scanning.jpg at 756 / 1600
+  captured web_final.png  status=complete coord=45.3375°N, 68.8323°W

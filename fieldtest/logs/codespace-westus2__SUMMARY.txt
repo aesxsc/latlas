@@ -1,0 +1,9 @@
+host        codespaces-3557cf  (Linux-6.8.0-1064-azure-x86_64-with-glibc2.39)
+python      3.14.2   backend tcp-connect  DEGRADED
+anchors     1585/1600 replied  (99.1%)
+closest RTT 4.86 ms   scan 138.2 s
+estimate    {'lat': 47.61428, 'lon': -122.33831}   at Seattle, United States
+bound       +/-1161.8 km
+truth       47.23365,-119.85228
+error       191.7 km   inside_bound=True
+photolog    web_scanning.jpg, web_final.jpg

@@ -1,0 +1,11 @@
+=== latlas field test: amsterdam-nl ===
+platform : Linux-6.8.0-1064-azure-x86_64-with-glibc2.39
+python   : 3.14.2 (CPython)
+cpus     : 2
+backend  : tcp-connect  [DEGRADED - tcp fallback]
+--- latlas --quick --json ---
+estimate 52.3531,4.9497  place='at Amsterdam-Oost, The Netherlands'  bound=+/-681 km  anchors=1570/1600
+truth 52.3708,4.8948 (spread 1 km)  error 4.2 km  inside_bound=True
+--- web UI photolog ---
+  captured web_scanning.jpg at 771 / 1600
+  captured web_final.png  status=complete coord=52.352°N, 4.9558°E

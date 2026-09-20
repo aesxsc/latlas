@@ -1,0 +1,11 @@
+=== latlas field test: macos-us ===
+platform : macOS-26.6.2-arm64-arm-64bit
+python   : 3.12.10 (CPython)
+cpus     : 3
+backend  : icmp-posix
+--- latlas --quick --json ---
+estimate 48.7443,-117.1963  place='116 km south of Post Falls, United States'  bound=+/-312 km  anchors=1564/1600
+truth 33.3820,-98.4941 (spread 2160 km)  error 2306.2 km  inside_bound=False
+--- web UI photolog ---
+  captured web_scanning.jpg at 926 / 1600
+  captured web_final.png  status=complete coord=44.2593°N, 67.9589°W

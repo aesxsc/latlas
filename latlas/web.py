@@ -600,7 +600,13 @@ function onDone(d){
     fmt(Math.abs(d.position.lat),4)+'\u00b0'+(d.position.lat>=0?'N':'S')+', '+
     fmt(Math.abs(d.position.lon),4)+'\u00b0'+(d.position.lon>=0?'E':'W');
   $('place').textContent = 'at ' + d.place;
-  $('bound').textContent = '\u00b1'+fmt(d.certificate_radius_km)+' km';
+  const hard = d.uncertainty ? d.uncertainty.is_hard_bound !== false : true;
+  $('bound').textContent = (hard ? '\u00b1' : '~') + fmt(d.certificate_radius_km)
+      + ' km' + (hard ? '' : '  (not a bound)');
+  if(!hard){
+    $('place').textContent += ' \u2014 anchor set self-contradictory, treat as unreliable';
+    $('place').style.color = '#d29922';
+  }
   $('minrtt').textContent = fmt(d.min_rtt_ms,2)+' ms';
   $('anch').textContent = d.anchors_used+' / '+d.anchors_total;
   $('fmodel').textContent = fmt(d.model.lat,3)+', '+fmt(d.model.lon,3)

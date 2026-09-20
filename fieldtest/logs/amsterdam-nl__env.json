@@ -1,0 +1,16 @@
+{
+ "label": "amsterdam-nl",
+ "hostname": "codespaces-24b6d9",
+ "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.39",
+ "system": "Linux",
+ "release": "6.8.0-1064-azure",
+ "machine": "x86_64",
+ "python": "3.14.2",
+ "python_impl": "CPython",
+ "cpu_count": 2,
+ "started": "2026-09-20T19:24:27Z",
+ "uname": "Linux codespaces-24b6d9 6.8.0-1064-azure #72~22.04.1-Ubuntu SMP Wed Jul 22 23:39:45 UTC 2026 x86_64 x86_64",
+ "backend": "tcp-connect",
+ "backend_degraded": true,
+ "nproc": "2"
+}

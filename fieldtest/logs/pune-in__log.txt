@@ -1,0 +1,11 @@
+=== latlas field test: pune-in ===
+platform : Linux-6.8.0-1064-azure-x86_64-with-glibc2.39
+python   : 3.14.2 (CPython)
+cpus     : 2
+backend  : tcp-connect  [DEGRADED - tcp fallback]
+--- latlas --quick --json ---
+estimate 18.9641,72.8219  place='at Dhārāvi, India'  bound=+/-852 km  anchors=1581/1600
+truth 18.5196,73.8561 (spread 1 km)  error 119.6 km  inside_bound=True
+--- web UI photolog ---
+  captured web_scanning.jpg at 736 / 1600
+  captured web_final.png  status=complete coord=18.9642°N, 72.8259°E

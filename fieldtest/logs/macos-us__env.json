@@ -1,0 +1,15 @@
+{
+ "label": "macos-us",
+ "hostname": "iad20-gt1017-7ed24533-2045-41f5-944b-59444e45498c-82963E880FC0.local",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "system": "Darwin",
+ "release": "25.6.0",
+ "machine": "arm64",
+ "python": "3.12.10",
+ "python_impl": "CPython",
+ "cpu_count": 3,
+ "started": "2026-09-20T21:06:42Z",
+ "uname": "Darwin iad20-gt1017-7ed24533-2045-41f5-944b-59444e45498c-82963E880FC0.local 25.6.0 Darwin Kernel Version 25.6.0: Fri Jul 31 19:16:43 PDT 2026; root:xnu-12377.161.14~5/RELEASE_ARM64_VMAPPLE arm64 arm",
+ "backend": "icmp-posix",
+ "backend_degraded": false
+}
